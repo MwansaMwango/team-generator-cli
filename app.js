@@ -10,15 +10,10 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
-function promptUser() {
+
+function promptEmployeeData() {
 
     return inquirer.prompt ([
-        {
-            type: "number",
-            name: "numOfTeamMembers",
-            message: "How many employees are in the team?",
-        },
-        
         {
             type: "input",
             name: "id",
@@ -71,10 +66,103 @@ function promptUser() {
                     }
             } 
         },
+        {
+            type: "confirm",
+            name: "addEmployee",
+            message: "Would you like to add another employee?",
+        },
     ]);
     
 }
-promptUser();
+
+async function getEmployeesData() {
+
+    try {
+      // Get number of Team Members from user prompt answer
+     // const numOfEmployees = await promptNumOfEmployees();
+      
+      //console.log (numOfEmployees);
+      
+      let employeeData = await promptEmployeeData();
+      let collectData = employeeData.addEmployee;
+      console.log (employeeData.addEmployee);
+      while (collectData) {
+        employeeData = await promptEmployeeData();
+        console.log (employeeData);
+        collectData = employeeData.addEmployee;
+      }  
+    //   for (i = 0; i < numOfEmployees; i++ ) {
+        
+    //     let employeeData = await promptEmployeeData();
+    //     console.log ('#'+i+'---'+ employeeData);
+
+    //   }
+    } catch(err) {
+      console.error(err.message);
+    }}
+
+getEmployeesData();
+
+//       //Github API request
+//       const queryRepoUrl = `https://api.github.com/repos/${answers.githubUsername}/${answers.githubRepo}`;
+//       const response = await axios.get(queryRepoUrl);
+//       const githubRepoData = response.data;
+   
+   
+//       // Get user data from Github API
+//       const profPicUrl = githubRepoData.owner.avatar_url;
+//       const githubUrl = githubRepoData.owner.url;
+      
+//       // Generate readme content data
+//       let readMeData = 
+//   `
+//   # ${answers.projectTitle} ![Github Update](${updatedBadgeUrl}) ![Github Forks](${forksBadgeUrl}) ![Github Forks](${starsBadgeUrl}) ![Github Forks](${openIssuesBadgeUrl})
+//   ## Description
+//   ${answers.description}
+  
+//   ---
+//   ## Table of Contents
+  
+//    * [Installation](#installation)
+//    * [Usage](#usage)
+//    * [Licence](#licence)
+//    * [Contributing](#contributing)
+//    * [Tests](#tests)
+//    * [Questions](#questions) 
+//   ---
+//   ## Installation
+//   ${answers.installation}
+//   ## Usage
+//   ${answers.usage}
+//   ## Licence
+//   ${answers.licence}
+//   ## Contribution
+//   ${answers.contribution}
+//   ## Tests
+//   ${answers.tests}
+  
+//   ---
+//   ## Have any questions?
+//   ![Github profile picture](${profPicUrl})
+//   * [Github Link](${githubUrl})
+//   * Email: ${answers.email}
+//   `;
+  
+//       //Write to new readme file
+//       writeFileAsync ('MyReadME.md', readMeData, (err) => {
+//       if (err) throw err;
+//       });
+//       console.log ("Successfully created 'MyReadME.md' file");  
+//       //Handle rejected promise
+//     } catch(err) {
+//       console.error(err.message);
+//     }
+//   }
+  
+//   generateReadMe();
+// const numberOfEmployee = await 
+// for (i = 0, i < prom  )
+
 // // Get Answers from User prompts
 // const answers = await promptUser();
 
