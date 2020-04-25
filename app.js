@@ -12,7 +12,13 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 function promptUser() {
 
-     return inquirer.prompt ([
+    return inquirer.prompt ([
+        {
+            type: "number",
+            name: "numOfTeamMembers",
+            message: "How many employees are in the team?",
+        },
+        
         {
             type: "input",
             name: "id",
@@ -29,12 +35,52 @@ function promptUser() {
             message: "What is your role in the company?",
             choices: ["Intern","Engineer","Manager"],
         },
-
+        {
+            type: "input",
+            name: "github",
+            message: "What is your github username?",
+            when: function (answers) {
+                    if (answers.role === "Engineer") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+            } 
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What school do you go to?",
+            when: function (answers) {
+                    if (answers.role === "Intern") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+            } 
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is your office number?",
+            when: function (answers) {
+                    if (answers.role === "Manager") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+            } 
+        },
     ]);
+    
 }
 promptUser();
+// // Get Answers from User prompts
+// const answers = await promptUser();
+
 // and to create objects for each team member (using the correct classes as blueprints!)
-    // After the user has input all employees desired, call the `render` function (required
+
+// After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
 
