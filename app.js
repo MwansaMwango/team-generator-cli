@@ -6,13 +6,12 @@ const path = require("path");
 const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+const render = require("./lib/htmlRenderer");
 
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 
-const render = require("./lib/htmlRenderer");
-
-// Write code to use inquirer to gather information about the development team members,
+// Gather information about the development team members,
 
 function promptEmployeeData() {
 
@@ -167,18 +166,8 @@ async function getEmployeesData() {
         console.error(err.message);
     }
 }
-
+console.log("Welcome to the team profile generator application. The best way to visualise the team members who make it happen! Answer the following questions build the team profile.");
 getEmployeesData();
 
-//       //Github API request
-//       const queryRepoUrl = `https://api.github.com/repos/${answers.githubUsername}/${answers.githubRepo}`;
-//       const response = await axios.get(queryRepoUrl);
-//       const githubRepoData = response.data;
-
-
-//       // Get user data from Github API
-//       const profPicUrl = githubRepoData.owner.avatar_url;
-//       const githubUrl = githubRepoData.owner.url;
-      
 
 
