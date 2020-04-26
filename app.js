@@ -21,16 +21,41 @@ function promptEmployeeData() {
             type: "input",
             name: "name",
             message: "What is your name?",
+            validate: function (input) {
+               if (input === '') {
+                   console.log("Please enter valid name with at least one character!");
+                   return false;
+                } else {
+                    return true;
+                }
+            }
         },
         {
             type: "input",
             name: "id",
             message: "What is your ID number?",
+            validate: function (input) {
+                if (isNaN (input) || input < 1) {
+                    console.log("User ID must be a number greater than '0'!");
+                    return false;
+                 } else {
+                     return true;
+                 }
+             }
         },
         {
             type: "input",
             name: "email",
             message: "What is your email?",
+            validate: function (input) {
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input))
+                {
+                  return true
+                }
+                  console.log("You have entered an invalid email address!")
+                  return false
+            }
+
         },
         {
             type: "list",
@@ -132,7 +157,7 @@ async function getEmployeesData() {
 
         const html = render(employeeList);
 
-        //Check if file exists
+        //Check if folder exists
         fs.existsSync(OUTPUT_DIR) || fs.mkdirSync(OUTPUT_DIR) 
         writeFileAsync(outputPath, html, (err) => {
             if (err) throw err;
