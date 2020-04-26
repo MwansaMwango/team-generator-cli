@@ -90,50 +90,53 @@ async function getEmployeesData() {
         let employeeData = {};
         let collectData = "";
         let employeeList = [];
+        let employee = {};
         do {
             employeeData = await promptEmployeeData(); // initialization for first employee (at least 1)
             collectData = employeeData.askAddEmployee;
             console.log (collectData);
             // and to create objects for each team member (using the correct classes as blueprints!)
-            if (employeeData.role === 'Intern') {
-                let employee = new Intern(
-                    employeeData.name,
-                    employeeData.id,
-                    employeeData.email,
-                    employeeData.school
-                );
-                employeeList.push(employee);
+            switch (employeeData.role) {
+                case "Intern":
+                        employee = new Intern(
+                        employeeData.name,
+                        employeeData.id,
+                        employeeData.email,
+                        employeeData.school
+                    );
+                    employeeList.push(employee);
+                    break;
+                case "Engineer":
+                        employee = new Engineer(
+                        employeeData.name,
+                        employeeData.id,
+                        employeeData.email,
+                        employeeData.github
+                    );
+                    employeeList.push(employee);
+                    break;
+                 
+                case "Manager":
+                        employee = new Manager(
+                        employeeData.name,
+                        employeeData.id,
+                        employeeData.email,
+                        employeeData.officeNumber
+                    );
+                    employeeList.push(employee);
+                    break;
             }
         }
         while (collectData); // Loop if collectData is true i.e. askAddEmployee answer is YES
         console.log(employeeList);
 
-        // After the user has input all employees desired, call the `render` function (required
-        // above) and pass in an array containing all employee objects; the `render` function will
-        // generate and return a block of HTML including templated divs for each employee!
-       
         const html = render(employeeList);
-        // After you have your html, you're now ready to create an HTML file using the HTML
-        // returned from the `render` function. Now write it to a file named `team.html` in the
-        // `output` folder. You can use the variable `outputPath` above target this location.
-        // Hint: you may need to check if the `output` folder exists and create it if it
-        // does not.
 
         //Check if file exists
         fs.existsSync(OUTPUT_DIR) || fs.mkdirSync(OUTPUT_DIR) 
         writeFileAsync(outputPath, html, (err) => {
             if (err) throw err;
         });   
-
-        // HINT: each employee type (manager, engineer, or intern) has slightly different
-        // information; write your code to ask different questions via inquirer depending on
-        // employee type.
-        
-        // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-        // and Intern classes should all extend from a class named Employee; see the directions
-        // for further information. Be sure to test out each class and verify it generates an 
-        // object with the correct structure and methods. This structure will be crucial in order
-        // for the provided `render` function to work!``'
 
     } catch(err) {
         console.error(err.message);
