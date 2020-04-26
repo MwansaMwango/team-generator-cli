@@ -68,7 +68,7 @@ function promptEmployeeData() {
         },
         {
             type: "confirm",
-            name: "addEmployee",
+            name: "askAddEmployee",
             message: "Would you like to add another employee?",
         },
     ]);
@@ -78,25 +78,18 @@ function promptEmployeeData() {
 async function getEmployeesData() {
 
     try {
-      // Get number of Team Members from user prompt answer
-     // const numOfEmployees = await promptNumOfEmployees();
-      
-      //console.log (numOfEmployees);
-      
-      let employeeData = await promptEmployeeData();
-      let collectData = employeeData.addEmployee;
-      console.log (employeeData.addEmployee);
-      while (collectData) {
-        employeeData = await promptEmployeeData();
-        console.log (employeeData);
-        collectData = employeeData.addEmployee;
-      }  
-    //   for (i = 0; i < numOfEmployees; i++ ) {
-        
-    //     let employeeData = await promptEmployeeData();
-    //     console.log ('#'+i+'---'+ employeeData);
-
-    //   }
+      // Get information about employees from the user
+      let employeeData = "";
+      let collectData = "";
+      do {
+          employeeData = await promptEmployeeData(); // initialization for first employee (at least 1)
+          collectData = employeeData.askAddEmployee;
+          console.log (collectData);
+                // if (role === 'Intern') {
+        //     let employee = new Intern(employeeData.name, employeeData.id, employeeData.email, employeeData.school)
+        // }
+      }
+      while (collectData); // Loop if collectData is true i.e. askAddEmployee answer is YES
     } catch(err) {
       console.error(err.message);
     }}
