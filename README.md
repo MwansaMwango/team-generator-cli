@@ -4,7 +4,7 @@ A software engineering team generator command line application. The application 
 
 ---
 ## Demo
-![Demo Video](https://github.com/MwansaMwango/team-generator-cli/blob/master/demo_team-prof-generator.mp4?raw=true)
+[Download Demo Video](https://github.com/MwansaMwango/team-generator-cli/blob/master/demo_team-prof-generator.mp4?raw=true)
 
 ## User Story
 ```html
@@ -37,6 +37,7 @@ The web page will be populated with the following team member's information:
 
 ## Tests
 Jest is used to test the applications classes for the mix of team members:
+* Employee
 * Intern
 * Engineer
 * Manager
