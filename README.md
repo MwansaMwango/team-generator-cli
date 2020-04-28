@@ -37,6 +37,7 @@ The web page will be populated with the following team member's information:
 
 ## Tests
 Jest is used to test the applications classes for the mix of team members:
+* Employee
 * Intern
 * Engineer
 * Manager
