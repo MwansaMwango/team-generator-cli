@@ -4,7 +4,7 @@ A software engineering team generator command line application. The application 
 
 ---
 ## Demo
-![Demo Video](https://github.com/MwansaMwango/team-generator-cli/blob/master/demo_team-prof-generator.mp4?raw=true)
+[Download Demo Video](https://github.com/MwansaMwango/team-generator-cli/blob/master/demo_team-prof-generator.mp4?raw=true)
 
 ## User Story
 ```html
