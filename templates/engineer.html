@@ -1,13 +1,35 @@
-<div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">{{ name }}</h2>
-        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>{{ role }}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: {{ id }}</li>
-            <li class="list-group-item">Email: <a href="mailto:{{ email }}">{{ email }}</a></li>
-            <li class="list-group-item">GitHub: <a href="https://github.com/{{ github }}" target="_blank" rel="noopener noreferrer">{{ github }}</a></li>
-        </ul>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="image-flip" >
+        <div class="mainflip flip-0">
+            <div class="frontside">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p><img class="img-fluid" src="https://source.unsplash.com/collection/888146/100x100" alt="profile picture"></p>
+                        <h4 class="card-title">{{ name }}</h4>
+                        <p class="card-text lead"><i class="fas fa-glasses mr-2"></i>{{ role }}</p>
+                        <a href="https://www.glassdoor.com/Job-Descriptions/Software-Engineer.htm" class="btn btn-primary btn-sm"><i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="backside">
+                <div class="card">
+                    <div class="card-body text-center mt-4">
+                        <h4 class="card-title">Connect</h4>
+                        <p class="card-text lead mb-4">Let's have a chat!</p>
+                        <ul class="list-group text-left">
+                            <li class="list-inline-item mb-2">
+                                <i class="fa fa-id-badge mr-2 "></i><span>ID: {{ id }}</span>
+                            </li>
+                            <li class="list-inline-item mb-2">
+                                <i class="fa fa-at mr-2"></i><span><a href="mailto:efnv@fldg.com">{{ email }}</a></span>
+                            </li>
+                            <li class="list-inline-item mb-2">
+                                <i class="fab fa-github mr-2"></i><span>GitHub: <a href="https://github.com/{{ github }}" target="_blank" rel="noopener noreferrer">{{ github }}</a></span>    
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
