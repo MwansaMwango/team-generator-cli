@@ -6,27 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>My Team</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <!-- Import Bootstrap and Font Awsome -->
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 jumbotron mb-3 team-heading">
-                <h1 class="text-center">My Team</h1>
+    <div id="page-container">
+        <!-- Page Content -->
+        <div id="content-wrap">
+            <div class="jumbotron jumbotron-fluid mb-0 pb-2">
+                <div class="container">
+                <h1 class="display-4">Team Profile Generator</h1>
+                            <p class="lead">A Node CLI app that takes in information about employees and generates an HTML webpage that displays summaries for each person.</p>
+                </div>
             </div>
+            <!-- Team -->
+            <section id="team" class="pb-1">
+                <div class="container">
+                    <h5 class="section-title display-4">OUR AWESOME TEAM</h5>
+                    <div class="row">
+<!-- Start of team members -->
+{{ team }}
+<!-- End of team members -->
+                    </div>   
+                </div>   
+            </section>
+            <!-- Team -->
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="team-area col-12 d-flex justify-content-center">
-                {{ team }}
-            </div>
-        </div>
-    </div>
+        <!-- Footer -->
+    <footer id="footer" class ="lead">
+        <p>
+            Team Profile Generator &copy;2020
+            <a class="social-icon text-xs-center" target="_blank" href="https://github.com/MwansaMwango/team-generator-cli">
+                <i class="fab fa-github mx-2"></i>Github
+            </a>
+        </p>
+    </footer>
 </body>
-
 </html>
