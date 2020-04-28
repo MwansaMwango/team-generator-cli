@@ -19,7 +19,7 @@ function promptEmployeeData() {
         {
             type: "input",
             name: "name",
-            message: "What is your name?",
+            message: "Enter team member name?",
             validate: function (input) {
                if (input === '') {
                    console.log("Please enter valid name with at least one character!");
@@ -32,10 +32,10 @@ function promptEmployeeData() {
         {
             type: "input",
             name: "id",
-            message: "What is your ID number?",
+            message: "Enter team member ID number?",
             validate: function (input) {
                 if (isNaN (input) || input < 1) {
-                    console.log("User ID must be a number greater than '0'!");
+                    console.log("Team member ID must be a number greater than '0'!");
                     return false;
                  } else {
                      return true;
@@ -45,7 +45,7 @@ function promptEmployeeData() {
         {
             type: "input",
             name: "email",
-            message: "What is your email?",
+            message: "Enter team member email?",
             validate: function (input) {
                 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input))
                 {
@@ -59,13 +59,13 @@ function promptEmployeeData() {
         {
             type: "list",
             name: "role",
-            message: "What is your role in the company?",
+            message: "Enter team member role in the company?",
             choices: ["Intern","Engineer","Manager"],
         },
         {
             type: "input",
             name: "github",
-            message: "What is your github username?",
+            message: "Enter team member github username?",
             when: function (answers) {
                 if (answers.role === "Engineer") {
                     return true;
@@ -77,7 +77,7 @@ function promptEmployeeData() {
         {
             type: "input",
             name: "school",
-            message: "What school do you go to?",
+            message: "Enter intern's school?",
             when: function (answers) {
                 if (answers.role === "Intern") {
                     return true;
@@ -89,7 +89,7 @@ function promptEmployeeData() {
         {
             type: "input",
             name: "officeNumber",
-            message: "What is your office number?",
+            message: "Enter manager's office number?",
             when: function (answers) {
                 if (answers.role === "Manager") {
                     return true;
@@ -112,13 +112,13 @@ async function getEmployeesData() {
     try {
         // Get information about employees from the user
         let employeeData = {};
-        let collectData = "";
+        let collectData = true;
         let employeeList = [];
         let employee = {};
         do {
             employeeData = await promptEmployeeData(); // initialization for first employee (at least 1)
             collectData = employeeData.askAddEmployee;
-            console.log (collectData);
+          
             // and to create objects for each team member (using the correct classes as blueprints!)
             switch (employeeData.role) {
                 case "Intern":
@@ -152,14 +152,17 @@ async function getEmployeesData() {
             }
         }
         while (collectData); // Loop if collectData is true i.e. askAddEmployee answer is YES
+        console.log("--- Data Collected ---");
         console.log(employeeList);
 
         const html = render(employeeList);
 
         //Check if folder exists
         fs.existsSync(OUTPUT_DIR) || fs.mkdirSync(OUTPUT_DIR) 
-        writeFileAsync(outputPath, html, (err) => {
+        // Create output file
+        writeFileAsync(outputPath, html, { flag : 'w' }, (err) => {
             if (err) throw err;
+            console.log("Succesfully created your awesome team profile webpage. Check folder 'Outputs/team.html'")
         });   
 
     } catch(err) {
